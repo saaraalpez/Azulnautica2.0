@@ -1,0 +1,955 @@
+
+
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>🌊 AzulNautica - Explora el Océano</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Quicksand:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Quicksand', sans-serif;
+            background: linear-gradient(to bottom, #dff6fd, #ffffff);
+            color: #03354e;
+        }
+        
+        .header-bg {
+            background: #0077b6;
+        }
+        
+        .menu-bg {
+            background: #caf0f8;
+        }
+        
+        .intro-bg {
+            background: #caf0f8;
+            border-left: 6px solid #00b4d8;
+        }
+        
+        .indice-bg {
+            background: #edf6f9;
+            border-left: 6px solid #0077b6;
+        }
+        
+        .boton {
+            background: #00b4d8;
+            transition: all 0.3s ease;
+        }
+        
+        .boton:hover {
+            background: #0096c7;
+            transform: translateY(-2px);
+        }
+        
+        .tiburon-card {
+            background: white;
+            border: 2px solid #caf0f8;
+            transition: all 0.3s ease;
+        }
+        
+        .tiburon-card:hover {
+            border-color: #00b4d8;
+            transform: translateY(-4px);
+            box-shadow: 0 8px 25px rgba(0, 180, 216, 0.15);
+        }
+        
+        .medusa-card {
+            background: white;
+            border: 2px solid #f8d7da;
+            transition: all 0.3s ease;
+        }
+        
+        .medusa-card:hover {
+            border-color: #dc3545;
+            transform: translateY(-4px);
+            box-shadow: 0 8px 25px rgba(220, 53, 69, 0.15);
+        }
+        
+        .active-section {
+            display: block;
+        }
+        
+        .hidden-section {
+            display: none;
+        }
+        
+        .nav-active {
+            background: #0077b6;
+            color: white;
+            border-radius: 20px;
+            padding: 0.5rem 1rem;
+        }
+        
+        .emoji-large {
+            font-size: 4rem;
+            line-height: 1;
+        }
+        
+        .fact-bubble {
+            background: linear-gradient(135deg, #caf0f8, #edf6f9);
+            border: 1px solid #00b4d8;
+        }
+        
+        .medusa-bubble {
+            background: linear-gradient(135deg, #fce4ec, #f8bbd9);
+            border: 1px solid #e91e63;
+        }
+        
+        .timeline-item {
+            border-left: 4px solid #00b4d8;
+            padding-left: 1rem;
+            margin-bottom: 2rem;
+        }
+    </style>
+</head>
+
+<body class="min-h-screen">
+    <!-- Header -->
+    <header class="header-bg text-white text-center py-8 px-4">
+        <h1 class="text-4xl md:text-5xl font-bold mb-4">🌊 AzulNautica</h1>
+        <p class="text-xl md:text-2xl font-medium">Explora el océano, conoce a sus criaturas y ayuda a protegerlas</p>
+    </header>
+
+    <!-- Navigation -->
+    <nav class="menu-bg py-4 px-4 text-center">
+        <div class="flex flex-wrap justify-center gap-4">
+            <a href="#inicio" onclick="showSection('inicio')" id="nav-inicio" class="nav-active font-bold text-decoration-none transition-all">
+                🏠 Inicio
+            </a>
+            <a href="#tiburones" onclick="showSection('tiburones')" id="nav-tiburones" class="text-blue-600 font-bold text-decoration-none hover:text-blue-800 transition-all px-4 py-2">
+                🦈 Tiburones
+            </a>
+            <a href="#medusas" onclick="showSection('medusas')" id="nav-medusas" class="text-pink-600 font-bold text-decoration-none hover:text-pink-800 transition-all px-4 py-2">
+                🪼 Medusas
+            </a>
+            <a href="#especies" onclick="showSection('especies')" id="nav-especies" class="text-blue-600 font-bold text-decoration-none hover:text-blue-800 transition-all px-4 py-2">
+                🐠 Especies A-Z
+            </a>
+        </div>
+    </nav>
+
+    <!-- Contenido Principal -->
+    <div class="max-w-6xl mx-auto px-4 py-8">
+        
+        <!-- Sección Inicio -->
+        <section id="inicio" class="active-section">
+            <div class="intro-bg p-6 rounded-lg mb-8">
+                <h2 class="text-3xl font-bold mb-4">¡Bienvenido al mundo submarino! 🐋</h2>
+                <p class="text-lg mb-4">
+                    AzulNautica es tu guía para descubrir las criaturas más increíbles del océano. 
+                    Desde tiburones majestuosos hasta medusas fascinantes, aquí encontrarás 
+                    todo lo que necesitas saber sobre la vida marina.
+                </p>
+                <ul class="list-disc pl-6 space-y-2 mb-6">
+                    <li>🦈 Conoce diferentes especies de tiburones</li>
+                    <li>🪼 Descubre el mundo de las medusas</li>
+                    <li>🌊 Aprende datos curiosos sobre el océano</li>
+                    <li>📚 Catálogo completo de la A a la Z</li>
+                    <li>🌍 Únete a la conservación marina</li>
+                </ul>
+                <button onclick="showSection('tiburones')" class="boton text-white px-6 py-3 rounded-full font-bold inline-block">
+                    ¡Empezar la aventura! 🚀
+                </button>
+            </div>
+
+            <div class="indice-bg p-6 rounded-lg">
+                <h3 class="text-2xl font-bold mb-4">📋 ¿Qué encontrarás aquí?</h3>
+                <div class="grid md:grid-cols-2 gap-6">
+                    <div class="space-y-3">
+                        <h4 class="font-bold text-lg">🦈 Sección Tiburones</h4>
+                        <p>Historia evolutiva, datos fascinantes y especies de la A-Z</p>
+                    </div>
+                    <div class="space-y-3">
+                        <h4 class="font-bold text-lg">🪼 Sección Medusas</h4>
+                        <p>Anatomía, tipos y especies únicas del océano</p>
+                    </div>
+                    <div class="space-y-3">
+                        <h4 class="font-bold text-lg">🐠 Especies A-Z</h4>
+                        <p>26 especies únicas con fotos reales y características detalladas</p>
+                    </div>
+                    <div class="space-y-3">
+                        <h4 class="font-bold text-lg">🌊 Conservación</h4>
+                        <p>Cómo puedes ayudar a proteger nuestros océanos</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Sección Tiburones -->
+        <section id="tiburones" class="hidden-section">
+            <div class="intro-bg p-6 rounded-lg mb-8">
+                <h2 class="text-3xl font-bold mb-4">🦈 Todo sobre Tiburones</h2>
+                <p class="text-lg mb-6">
+                    Los tiburones son algunas de las criaturas más fascinantes y malentendidas del océano. 
+                    ¡Descubre la verdad detrás de estos increíbles supervivientes!
+                </p>
+                
+                <!-- Navegación interna -->
+                <div class="flex flex-wrap gap-4 mb-6">
+                    <button onclick="showSharkSection('historia')" id="shark-historia" class="boton text-white px-4 py-2 rounded-full font-bold">
+                        📜 Historia Evolutiva
+                    </button>
+                    <button onclick="showSharkSection('datos')" id="shark-datos" class="bg-gray-200 text-gray-700 px-4 py-2 rounded-full font-bold hover:bg-gray-300 transition-all">
+                        📊 Datos Generales
+                    </button>
+                    <button onclick="showSharkSection('mitos')" id="shark-mitos" class="bg-gray-200 text-gray-700 px-4 py-2 rounded-full font-bold hover:bg-gray-300 transition-all">
+                        ❌ Mitos vs Realidad
+                    </button>
+                    <button onclick="showSharkSection('especies-az')" id="shark-especies-az" class="bg-gray-200 text-gray-700 px-4 py-2 rounded-full font-bold hover:bg-gray-300 transition-all">
+                        🔤 Especies A-Z
+                    </button>
+                    <button onclick="showSharkSection('conservacion')" id="shark-conservacion" class="bg-gray-200 text-gray-700 px-4 py-2 rounded-full font-bold hover:bg-gray-300 transition-all">
+                        🌍 Conservación
+                    </button>
+                </div>
+
+                <!-- Historia Evolutiva -->
+                <div id="shark-section-historia" class="shark-subsection">
+                    <div class="space-y-6">
+                        <div class="bg-blue-50 p-6 rounded-lg">
+                            <h4 class="font-bold text-blue-800 mb-3 text-xl">🕰️ Los Supervivientes Definitivos</h4>
+                            <p class="text-blue-700 mb-4">
+                                Los tiburones han sobrevivido a las 5 grandes extinciones masivas de la Tierra, 
+                                incluyendo la que acabó con los dinosaurios hace 66 millones de años.
+                            </p>
+                        </div>
+                        
+                        <div class="space-y-4">
+                            <div class="timeline-item">
+                                <h5 class="font-bold text-lg">450 millones de años atrás</h5>
+                                <p>Aparecen los primeros ancestros de los tiburones</p>
+                            </div>
+                            <div class="timeline-item">
+                                <h5 class="font-bold text-lg">400 millones de años atrás</h5>
+                                <p>Los tiburones desarrollan su forma moderna básica</p>
+                            </div>
+                            <div class="timeline-item">
+                                <h5 class="font-bold text-lg">250 millones de años atrás</h5>
+                                <p>Sobreviven a la Gran Extinción del Pérmico (96% de especies marinas desaparecen)</p>
+                            </div>
+                            <div class="timeline-item">
+                                <h5 class="font-bold text-lg">66 millones de años atrás</h5>
+                                <p>Sobreviven al asteroide que extinguió a los dinosaurios</p>
+                            </div>
+                        </div>
+                        
+                        <div class="grid md:grid-cols-3 gap-4">
+                            <div class="fact-bubble p-4 rounded-lg text-center">
+                                <div class="emoji-large mb-2">🦕</div>
+                                <h5 class="font-bold">Antes que los dinosaurios</h5>
+                                <p class="text-sm">Existían 180 millones de años antes</p>
+                            </div>
+                            <div class="fact-bubble p-4 rounded-lg text-center">
+                                <div class="emoji-large mb-2">🌳</div>
+                                <h5 class="font-bold">Antes que los árboles</h5>
+                                <p class="text-sm">50 millones de años antes</p>
+                            </div>
+                            <div class="fact-bubble p-4 rounded-lg text-center">
+                                <div class="emoji-large mb-2">🧬</div>
+                                <h5 class="font-bold">Diseño perfecto</h5>
+                                <p class="text-sm">Apenas han cambiado en millones de años</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Datos Generales -->
+                <div id="shark-section-datos" class="shark-subsection hidden">
+                    <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-4 mb-6">
+                        <div class="fact-bubble p-4 rounded-lg text-center">
+                            <div class="emoji-large mb-2">🦈</div>
+                            <h4 class="font-bold">500+ Especies</h4>
+                            <p class="text-sm">Desde 20cm hasta 12m</p>
+                        </div>
+                        <div class="fact-bubble p-4 rounded-lg text-center">
+                            <div class="emoji-large mb-2">🦷</div>
+                            <h4 class="font-bold">35,000 Dientes</h4>
+                            <p class="text-sm">En toda su vida</p>
+                        </div>
+                        <div class="fact-bubble p-4 rounded-lg text-center">
+                            <div class="emoji-large mb-2">⚡</div>
+                            <h4 class="font-bold">Electrorecepción</h4>
+                            <p class="text-sm">Detectan campos eléctricos</p>
+                        </div>
+                        <div class="fact-bubble p-4 rounded-lg text-center">
+                            <div class="emoji-large mb-2">🌊</div>
+                            <h4 class="font-bold">400M Años</h4>
+                            <p class="text-sm">De evolución</p>
+                        </div>
+                    </div>
+                    
+                    <div class="bg-white p-6 rounded-lg border-2 border-blue-200">
+                        <h4 class="text-xl font-bold mb-4">💡 ¿Sabías que...?</h4>
+                        <ul class="space-y-3">
+                            <li class="flex items-start space-x-3">
+                                <span class="text-blue-500 font-bold">•</span>
+                                <span>Los tiburones existían antes que los árboles</span>
+                            </li>
+                            <li class="flex items-start space-x-3">
+                                <span class="text-blue-500 font-bold">•</span>
+                                <span>Pueden detectar una gota de sangre en 100 litros de agua</span>
+                            </li>
+                            <li class="flex items-start space-x-3">
+                                <span class="text-blue-500 font-bold">•</span>
+                                <span>Sus dientes se regeneran constantemente</span>
+                            </li>
+                            <li class="flex items-start space-x-3">
+                                <span class="text-blue-500 font-bold">•</span>
+                                <span>Algunos pueden vivir más de 400 años</span>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+
+                <!-- Mitos vs Realidad -->
+                <div id="shark-section-mitos" class="shark-subsection hidden">
+                    <div class="space-y-6">
+                        <div class="grid md:grid-cols-2 gap-6">
+                            <div class="bg-red-50 p-4 rounded-lg border-l-4 border-red-400">
+                                <h4 class="font-bold text-red-800 mb-2">❌ MITO</h4>
+                                <p class="text-red-700">Los tiburones son máquinas de matar sin cerebro</p>
+                            </div>
+                            <div class="bg-green-50 p-4 rounded-lg border-l-4 border-green-400">
+                                <h4 class="font-bold text-green-800 mb-2">✅ REALIDAD</h4>
+                                <p class="text-green-700">Son inteligentes y selectivos con sus presas</p>
+                            </div>
+                        </div>
+                        
+                        <div class="grid md:grid-cols-2 gap-6">
+                            <div class="bg-red-50 p-4 rounded-lg border-l-4 border-red-400">
+                                <h4 class="font-bold text-red-800 mb-2">❌ MITO</h4>
+                                <p class="text-red-700">Atacan constantemente a los humanos</p>
+                            </div>
+                            <div class="bg-green-50 p-4 rounded-lg border-l-4 border-green-400">
+                                <h4 class="font-bold text-green-800 mb-2">✅ REALIDAD</h4>
+                                <p class="text-green-700">Solo 5-10 ataques fatales por año mundialmente</p>
+                            </div>
+                        </div>
+
+                        <div class="bg-blue-50 p-6 rounded-lg">
+                            <h4 class="font-bold text-blue-800 mb-3">📊 La Verdad en Números</h4>
+                            <p class="text-blue-700 mb-4">
+                                Tienes más probabilidades de ser alcanzado por un rayo (1 en 15,300) 
+                                que de ser atacado por un tiburón (1 en 11.5 millones).
+                            </p>
+                            <p class="text-blue-700 font-semibold">
+                                Los humanos matamos 100 millones de tiburones al año. 
+                                Los tiburones matan menos de 10 humanos anualmente.
+                            </p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Especies A-Z de Tiburones -->
+                <div id="shark-section-especies-az" class="shark-subsection hidden">
+                    <div class="mb-6">
+                        <h4 class="text-2xl font-bold mb-4">🔤 Tiburones de la A a la Z</h4>
+                        <p class="text-lg mb-6">Descubre las especies más fascinantes ordenadas alfabéticamente</p>
+                    </div>
+                    
+                    <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-4">
+                        <!-- A - Tiburón Ángel -->
+                        <div class="tiburon-card p-4 rounded-lg cursor-pointer" onclick="openSpeciesModal('angel')">
+                            <div class="text-center mb-3">
+                                <div class="w-16 h-16 mx-auto mb-2 rounded-full overflow-hidden border-2 border-blue-200">
+                                    <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/8/8a/Squatina_squatina.jpg/300px-Squatina_squatina.jpg" 
+                                         alt="Tiburón Ángel" 
+                                         class="w-full h-full object-cover"
+                                         onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
+                                    <div class="w-full h-full bg-blue-100 flex items-center justify-center text-xl" style="display: none;">🦈</div>
+                                </div>
+                                <h5 class="font-bold">A - Tiburón Ángel</h5>
+                                <p class="text-xs text-gray-600">Maestro del camuflaje</p>
+                            </div>
+                        </div>
+
+                        <!-- B - Tiburón Azul -->
+                        <div class="tiburon-card p-4 rounded-lg cursor-pointer" onclick="openSpeciesModal('azul')">
+                            <div class="text-center mb-3">
+                                <div class="w-16 h-16 mx-auto mb-2 rounded-full overflow-hidden border-2 border-blue-200">
+                                    <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/5/56/Prionace_glauca_1.jpg/300px-Prionace_glauca_1.jpg" 
+                                         alt="Tiburón Azul" 
+                                         class="w-full h-full object-cover"
+                                         onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
+                                    <div class="w-full h-full bg-blue-100 flex items-center justify-center text-xl" style="display: none;">🦈</div>
+                                </div>
+                                <h5 class="font-bold">B - Tiburón Azul</h5>
+                                <p class="text-xs text-gray-600">Gran viajero oceánico</p>
+                            </div>
+                        </div>
+
+                        <!-- C - Tiburón Blanco -->
+                        <div class="tiburon-card p-4 rounded-lg cursor-pointer" onclick="openSpeciesModal('blanco')">
+                            <div class="text-center mb-3">
+                                <div class="w-16 h-16 mx-auto mb-2 rounded-full overflow-hidden border-2 border-blue-200">
+                                    <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/5/56/White_shark.jpg/300px-White_shark.jpg" 
+                                         alt="Tiburón Blanco" 
+                                         class="w-full h-full object-cover"
+                                         onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
+                                    <div class="w-full h-full bg-white flex items-center justify-center text-xl border" style="display: none;">🦈</div>
+                                </div>
+                                <h5 class="font-bold">C - Tiburón Blanco</h5>
+                                <p class="text-xs text-gray-600">El gran depredador</p>
+                            </div>
+                        </div>
+
+                        <!-- Continúa con más especies... -->
+                        <div class="col-span-full text-center py-8">
+                            <p class="text-gray-600 mb-4">¡Y muchas especies más por descubrir!</p>
+                            <button onclick="showSection('especies')" class="boton text-white px-6 py-3 rounded-full font-bold">
+                                Ver Catálogo Completo A-Z 📚
+                            </button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Conservación -->
+                <div id="shark-section-conservacion" class="shark-subsection hidden">
+                    <div class="space-y-6">
+                        <div class="bg-yellow-50 p-6 rounded-lg border-l-4 border-yellow-400">
+                            <h4 class="font-bold text-yellow-800 mb-3">⚠️ Situación Actual</h4>
+                            <ul class="space-y-2 text-yellow-700">
+                                <li>• 25% de especies de tiburones están en peligro de extinción</li>
+                                <li>• Sus poblaciones han disminuido 90% en los últimos 50 años</li>
+                                <li>• Son cazados por sus aletas, aceite y carne</li>
+                            </ul>
+                        </div>
+                        
+                        <div class="bg-green-50 p-6 rounded-lg border-l-4 border-green-400">
+                            <h4 class="font-bold text-green-800 mb-3">🌍 Cómo Puedes Ayudar</h4>
+                            <ul class="space-y-2 text-green-700">
+                                <li>• No consumas sopa de aleta de tiburón</li>
+                                <li>• Apoya organizaciones de conservación marina</li>
+                                <li>• Comparte información correcta sobre tiburones</li>
+                                <li>• Participa en limpiezas de playas</li>
+                                <li>• Elige productos de pesca sostenible</li>
+                            </ul>
+                        </div>
+                        
+                        <div class="bg-blue-50 p-6 rounded-lg text-center">
+                            <h4 class="font-bold text-blue-800 mb-3">💙 Únete al Movimiento</h4>
+                            <p class="text-blue-700 mb-4">
+                                Cada persona que aprende la verdad sobre los tiburones 
+                                se convierte en un defensor de estos increíbles animales.
+                            </p>
+                            <div class="text-4xl mb-2">🦈💙🌊</div>
+                            <p class="text-blue-600 font-semibold">#SaveSharks #OceanConservation</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Sección Medusas -->
+        <section id="medusas" class="hidden-section">
+            <div class="intro-bg p-6 rounded-lg mb-8" style="background: #fce4ec; border-left: 6px solid #e91e63;">
+                <h2 class="text-3xl font-bold mb-4">🪼 Todo sobre Medusas</h2>
+                <p class="text-lg mb-6">
+                    Las medusas son criaturas fascinantes que han habitado nuestros océanos durante más de 500 millones de años. 
+                    ¡Descubre sus secretos y su increíble diversidad!
+                </p>
+                
+                <!-- Navegación interna -->
+                <div class="flex flex-wrap gap-4 mb-6">
+                    <button onclick="showJellyfishSection('historia')" id="jellyfish-historia" class="bg-pink-500 hover:bg-pink-600 text-white px-4 py-2 rounded-full font-bold transition-all">
+                        📜 Historia Evolutiva
+                    </button>
+                    <button onclick="showJellyfishSection('anatomia')" id="jellyfish-anatomia" class="bg-gray-200 text-gray-700 px-4 py-2 rounded-full font-bold hover:bg-gray-300 transition-all">
+                        🧬 Anatomía
+                    </button>
+                    <button onclick="showJellyfishSection('tipos')" id="jellyfish-tipos" class="bg-gray-200 text-gray-700 px-4 py-2 rounded-full font-bold hover:bg-gray-300 transition-all">
+                        🌈 Tipos
+                    </button>
+                    <button onclick="showJellyfishSection('especies-az')" id="jellyfish-especies-az" class="bg-gray-200 text-gray-700 px-4 py-2 rounded-full font-bold hover:bg-gray-300 transition-all">
+                        🔤 Especies A-Z
+                    </button>
+                    <button onclick="showJellyfishSection('curiosidades')" id="jellyfish-curiosidades" class="bg-gray-200 text-gray-700 px-4 py-2 rounded-full font-bold hover:bg-gray-300 transition-all">
+                        ✨ Curiosidades
+                    </button>
+                </div>
+
+                <!-- Historia Evolutiva -->
+                <div id="jellyfish-section-historia" class="jellyfish-subsection">
+                    <div class="space-y-6">
+                        <div class="bg-pink-50 p-6 rounded-lg">
+                            <h4 class="font-bold text-pink-800 mb-3 text-xl">🕰️ Los Primeros Habitantes del Océano</h4>
+                            <p class="text-pink-700 mb-4">
+                                Las medusas son uno de los grupos de animales más antiguos de la Tierra, 
+                                existiendo desde hace más de 500 millones de años, mucho antes que los peces, 
+                                dinosaurios o cualquier animal terrestre.
+                            </p>
+                        </div>
+                        
+                        <div class="space-y-4">
+                            <div class="timeline-item" style="border-left: 4px solid #e91e63;">
+                                <h5 class="font-bold text-lg">500+ millones de años atrás</h5>
+                                <p>Aparecen las primeras medusas en el océano primitivo</p>
+                            </div>
+                            <div class="timeline-item" style="border-left: 4px solid #e91e63;">
+                                <h5 class="font-bold text-lg">450 millones de años atrás</h5>
+                                <p>Se diversifican en múltiples formas y tamaños</p>
+                            </div>
+                            <div class="timeline-item" style="border-left: 4px solid #e91e63;">
+                                <h5 class="font-bold text-lg">Presente</h5>
+                                <p>Más de 2,000 especies conocidas en todos los océanos</p>
+                            </div>
+                        </div>
+                        
+                        <div class="grid md:grid-cols-3 gap-4">
+                            <div class="medusa-bubble p-4 rounded-lg text-center">
+                                <div class="emoji-large mb-2">🧠</div>
+                                <h5 class="font-bold">Sin cerebro</h5>
+                                <p class="text-sm">Pero con sistema nervioso simple</p>
+                            </div>
+                            <div class="medusa-bubble p-4 rounded-lg text-center">
+                                <div class="emoji-large mb-2">💧</div>
+                                <h5 class="font-bold">95% agua</h5>
+                                <p class="text-sm">Cuerpos casi transparentes</p>
+                            </div>
+                            <div class="medusa-bubble p-4 rounded-lg text-center">
+                                <div class="emoji-large mb-2">♾️</div>
+                                <h5 class="font-bold">Inmortales</h5>
+                                <p class="text-sm">Algunas especies pueden revertir su edad</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Anatomía -->
+                <div id="jellyfish-section-anatomia" class="jellyfish-subsection hidden">
+                    <div class="space-y-6">
+                        <div class="bg-white p-6 rounded-lg border-2 border-pink-200">
+                            <h4 class="text-xl font-bold mb-4">🧬 Estructura Corporal</h4>
+                            <div class="grid md:grid-cols-2 gap-6">
+                                <div>
+                                    <h5 class="font-bold mb-2">🎪 Umbrela (Campana)</h5>
+                                    <p class="text-sm mb-4">La parte superior en forma de campana que les permite nadar</p>
+                                    
+                                    <h5 class="font-bold mb-2">🦑 Tentáculos</h5>
+                                    <p class="text-sm mb-4">Contienen células urticantes llamadas cnidocitos</p>
+                                    
+                                    <h5 class="font-bold mb-2">👄 Manubrio</h5>
+                                    <p class="text-sm">Estructura central que funciona como boca y estómago</p>
+                                </div>
+                                <div class="medusa-bubble p-4 rounded-lg">
+                                    <h5 class="font-bold mb-2">⚡ Células Urticantes</h5>
+                                    <p class="text-sm mb-2">Los cnidocitos son como pequeños arpones microscópicos que:</p>
+                                    <ul class="text-xs space-y-1">
+                                        <li>• Se disparan en 700 nanosegundos</li>
+                                        <li>• Inyectan toxinas paralizantes</li>
+                                        <li>• Funcionan incluso después de la muerte</li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Tipos -->
+                <div id="jellyfish-section-tipos" class="jellyfish-subsection hidden">
+                    <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-4 mb-6">
+                        <div class="medusa-bubble p-4 rounded-lg text-center">
+                            <div class="emoji-large mb-2">🪼</div>
+                            <h4 class="font-bold">Escifozoos</h4>
+                            <p class="text-sm">Medusas "verdaderas"</p>
+                        </div>
+                        <div class="medusa-bubble p-4 rounded-lg text-center">
+                            <div class="emoji-large mb-2">🌸</div>
+                            <h4 class="font-bold">Hidrozoos</h4>
+                            <p class="text-sm">Medusas pequeñas</p>
+                        </div>
+                        <div class="medusa-bubble p-4 rounded-lg text-center">
+                            <div class="emoji-large mb-2">📦</div>
+                            <h4 class="font-bold">Cubozoos</h4>
+                            <p class="text-sm">Medusas caja</p>
+                        </div>
+                        <div class="medusa-bubble p-4 rounded-lg text-center">
+                            <div class="emoji-large mb-2">🎭</div>
+                            <h4 class="font-bold">Estaurozoos</h4>
+                            <p class="text-sm">Medusas sésiles</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Especies A-Z de Medusas -->
+                <div id="jellyfish-section-especies-az" class="jellyfish-subsection hidden">
+                    <div class="mb-6">
+                        <h4 class="text-2xl font-bold mb-4">🔤 Medusas de la A a la Z</h4>
+                        <p class="text-lg mb-6">Descubre las especies más fascinantes ordenadas alfabéticamente</p>
+                    </div>
+                    
+                    <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-4">
+                        <!-- A - Medusa Aurelia -->
+                        <div class="medusa-card p-4 rounded-lg cursor-pointer" onclick="openSpeciesModal('aurelia')">
+                            <div class="text-center mb-3">
+                                <div class="w-16 h-16 mx-auto mb-2 rounded-full overflow-hidden border-2 border-pink-200">
+                                    <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/f/f2/Aurelia_aurita_%28Cnidaria%29.jpg/300px-Aurelia_aurita_%28Cnidaria%29.jpg" 
+                                         alt="Medusa Aurelia" 
+                                         class="w-full h-full object-cover"
+                                         onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
+                                    <div class="w-full h-full bg-pink-100 flex items-center justify-center text-xl" style="display: none;">🪼</div>
+                                </div>
+                                <h5 class="font-bold">A - Medusa Aurelia</h5>
+                                <p class="text-xs text-gray-600">La medusa luna común</p>
+                            </div>
+                        </div>
+
+                        <!-- B - Medusa Bola de Cañón -->
+                        <div class="medusa-card p-4 rounded-lg cursor-pointer" onclick="openSpeciesModal('bola-canon')">
+                            <div class="text-center mb-3">
+                                <div class="w-16 h-16 mx-auto mb-2 rounded-full overflow-hidden border-2 border-pink-200">
+                                    <div class="w-full h-full bg-blue-100 flex items-center justify-center text-xl">⚽</div>
+                                </div>
+                                <h5 class="font-bold">B - Bola de Cañón</h5>
+                                <p class="text-xs text-gray-600">Medusa sin tentáculos</p>
+                            </div>
+                        </div>
+
+                        <!-- C - Medusa Caja -->
+                        <div class="medusa-card p-4 rounded-lg cursor-pointer" onclick="openSpeciesModal('caja')">
+                            <div class="text-center mb-3">
+                                <div class="w-16 h-16 mx-auto mb-2 rounded-full overflow-hidden border-2 border-pink-200">
+                                    <div class="w-full h-full bg-red-100 flex items-center justify-center text-xl">📦</div>
+                                </div>
+                                <h5 class="font-bold">C - Medusa Caja</h5>
+                                <p class="text-xs text-gray-600">Una de las más venenosas</p>
+                            </div>
+                        </div>
+
+                        <!-- Continúa con más especies... -->
+                        <div class="col-span-full text-center py-8">
+                            <p class="text-gray-600 mb-4">¡Y muchas especies más por descubrir!</p>
+                            <button onclick="showSection('especies')" class="bg-pink-500 hover:bg-pink-600 text-white px-6 py-3 rounded-full font-bold transition-all">
+                                Ver Catálogo Completo A-Z 📚
+                            </button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Curiosidades -->
+                <div id="jellyfish-section-curiosidades" class="jellyfish-subsection hidden">
+                    <div class="space-y-6">
+                        <div class="bg-white p-6 rounded-lg border-2 border-pink-200">
+                            <h4 class="text-xl font-bold mb-4">✨ Datos Increíbles</h4>
+                            <div class="grid md:grid-cols-2 gap-6">
+                                <ul class="space-y-3">
+                                    <li class="flex items-start space-x-3">
+                                        <span class="text-pink-500 font-bold">🧬</span>
+                                        <span>La medusa inmortal puede revertir su proceso de envejecimiento</span>
+                                    </li>
+                                    <li class="flex items-start space-x-3">
+                                        <span class="text-pink-500 font-bold">💡</span>
+                                        <span>Algunas medusas son bioluminiscentes y brillan en la oscuridad</span>
+                                    </li>
+                                    <li class="flex items-start space-x-3">
+                                        <span class="text-pink-500 font-bold">🌊</span>
+                                        <span>Pueden predecir tormentas y huracanes</span>
+                                    </li>
+                                </ul>
+                                <ul class="space-y-3">
+                                    <li class="flex items-start space-x-3">
+                                        <span class="text-pink-500 font-bold">🎯</span>
+                                        <span>Sus células urticantes se disparan más rápido que una bala</span>
+                                    </li>
+                                    <li class="flex items-start space-x-3">
+                                        <span class="text-pink-500 font-bold">🍽️</span>
+                                        <span>Algunas especies se comen a sí mismas cuando no hay comida</span>
+                                    </li>
+                                    <li class="flex items-start space-x-3">
+                                        <span class="text-pink-500 font-bold">🌍</span>
+                                        <span>Existen en todos los océanos del mundo</span>
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Sección Especies A-Z -->
+        <section id="especies" class="hidden-section">
+            <div class="intro-bg p-6 rounded-lg mb-8">
+                <h2 class="text-3xl font-bold mb-4">🐠 Especies A-Z</h2>
+                <p class="text-lg mb-6">
+                    Descubre 26 especies fascinantes de tiburones, una para cada letra del alfabeto. 
+                    Cada una con sus características únicas y datos curiosos.
+                </p>
+            </div>
+
+            <div class="grid md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
+                <!-- A - Tiburón Ángel -->
+                <div class="tiburon-card p-4 rounded-lg cursor-pointer" onclick="openSpeciesModal('angel')">
+                    <div class="text-center mb-3">
+                        <div class="w-20 h-20 mx-auto mb-2 rounded-full overflow-hidden border-2 border-blue-200">
+                            <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/8/8a/Squatina_squatina.jpg/300px-Squatina_squatina.jpg" 
+                                 alt="Tiburón Ángel" 
+                                 class="w-full h-full object-cover"
+                                 onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
+                            <div class="w-full h-full bg-blue-100 flex items-center justify-center text-2xl" style="display: none;">🦈</div>
+                        </div>
+                        <h3 class="text-lg font-bold">A - Tiburón Ángel</h3>
+                        <p class="text-gray-600 italic text-sm">Squatina squatina</p>
+                    </div>
+                    <p class="text-xs mb-3">
+                        Maestro del camuflaje que se entierra en la arena.
+                    </p>
+                    <div class="flex justify-between items-center">
+                        <span class="bg-blue-100 text-blue-800 px-2 py-1 rounded-full text-xs font-semibold">
+                            Bentónico
+                        </span>
+                        <span class="text-blue-600 font-semibold text-xs">Ver más →</span>
+                    </div>
+                </div>
+
+                <!-- B - Tiburón Ballena -->
+                <div class="tiburon-card p-4 rounded-lg cursor-pointer" onclick="openSpeciesModal('ballena')">
+                    <div class="text-center mb-3">
+                        <div class="w-20 h-20 mx-auto mb-2 rounded-full overflow-hidden border-2 border-blue-200">
+                            <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/1/1c/Whale_shark_Georgia_aquarium.jpg/300px-Whale_shark_Georgia_aquarium.jpg" 
+                                 alt="Tiburón Ballena" 
+                                 class="w-full h-full object-cover"
+                                 onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
+                            <div class="w-full h-full bg-purple-100 flex items-center justify-center text-2xl" style="display: none;">🐋</div>
+                        </div>
+                        <h3 class="text-lg font-bold">B - Tiburón Ballena</h3>
+                        <p class="text-gray-600 italic text-sm">Rhincodon typus</p>
+                    </div>
+                    <p class="text-xs mb-3">
+                        El pez más grande del mundo.
+                    </p>
+                    <div class="flex justify-between items-center">
+                        <span class="bg-purple-100 text-purple-800 px-2 py-1 rounded-full text-xs font-semibold">
+                            Gigante
+                        </span>
+                        <span class="text-blue-600 font-semibold text-xs">Ver más →</span>
+                    </div>
+                </div>
+
+                <!-- Continúa con las demás letras... -->
+                <div class="col-span-full text-center py-8">
+                    <p class="text-gray-600 mb-4">Catálogo completo en desarrollo...</p>
+                    <p class="text-sm text-gray-500">¡Pronto tendremos las 26 especies completas!</p>
+                </div>
+            </div>
+        </section>
+    </div>
+
+    <!-- Modal para especies -->
+    <div id="speciesModal" class="fixed inset-0 bg-black bg-opacity-50 hidden z-50 flex items-center justify-center p-4">
+        <div class="bg-white rounded-2xl max-w-4xl w-full max-h-[90vh] overflow-y-auto">
+            <div class="p-8">
+                <div class="flex justify-between items-center mb-6">
+                    <h2 id="modalTitle" class="text-3xl font-bold text-gray-800"></h2>
+                    <button onclick="closeModal()" class="text-gray-500 hover:text-gray-700 text-3xl font-bold">×</button>
+                </div>
+                <div id="modalContent">
+                    <!-- Contenido se carga dinámicamente -->
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <footer class="header-bg text-white text-center py-6 px-4 mt-12">
+        <p class="text-lg">© 2025 AzulNautica • Diseñado con 💙 por Sara</p>
+        <p class="text-sm mt-2 opacity-80">Explora, aprende y protege nuestros océanos 🌊</p>
+    </footer>
+
+    <script>
+        // Datos de especies para el modal
+        const speciesData = {
+            angel: {
+                title: "🦈 Tiburón Ángel",
+                scientific: "Squatina squatina",
+                content: `
+                    <div class="space-y-6">
+                        <div class="text-center">
+                            <div class="w-32 h-32 mx-auto mb-4 rounded-full overflow-hidden border-4 border-blue-200">
+                                <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/8/8a/Squatina_squatina.jpg/400px-Squatina_squatina.jpg" 
+                                     alt="Tiburón Ángel" 
+                                     class="w-full h-full object-cover"
+                                     onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
+                                <div class="w-full h-full bg-blue-100 flex items-center justify-center text-6xl" style="display: none;">🦈</div>
+                            </div>
+                            <h3 class="text-2xl font-bold mb-2">El Maestro del Camuflaje</h3>
+                        </div>
+                        
+                        <div class="grid md:grid-cols-2 gap-6">
+                            <div class="fact-bubble p-4 rounded-lg">
+                                <h4 class="font-bold mb-2">📏 Tamaño</h4>
+                                <p>Hasta 2.4 metros de longitud</p>
+                            </div>
+                            <div class="fact-bubble p-4 rounded-lg">
+                                <h4 class="font-bold mb-2">🏠 Hábitat</h4>
+                                <p>Fondos arenosos y fangosos</p>
+                            </div>
+                        </div>
+                        
+                        <div class="bg-blue-50 p-6 rounded-lg">
+                            <h4 class="font-bold mb-3">🎯 Técnica de Caza</h4>
+                            <p class="mb-3">El tiburón ángel es un maestro del camuflaje. Se entierra completamente en la arena, dejando solo los ojos expuestos, y espera pacientemente a que una presa se acerque.</p>
+                            <p class="font-semibold">¡Cuando ataca, es tan rápido que la presa no tiene tiempo de escapar!</p>
+                        </div>
+                    </div>
+                `
+            },
+            ballena: {
+                title: "🐋 Tiburón Ballena",
+                scientific: "Rhincodon typus",
+                content: `
+                    <div class="space-y-6">
+                        <div class="text-center">
+                            <div class="w-32 h-32 mx-auto mb-4 rounded-full overflow-hidden border-4 border-blue-200">
+                                <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/1/1c/Whale_shark_Georgia_aquarium.jpg/400px-Whale_shark_Georgia_aquarium.jpg" 
+                                     alt="Tiburón Ballena" 
+                                     class="w-full h-full object-cover"
+                                     onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
+                                <div class="w-full h-full bg-purple-100 flex items-center justify-center text-6xl" style="display: none;">🐋</div>
+                            </div>
+                            <h3 class="text-2xl font-bold mb-2">El Gigante Gentil</h3>
+                        </div>
+                        
+                        <div class="grid md:grid-cols-2 gap-6">
+                            <div class="fact-bubble p-4 rounded-lg text-center">
+                                <h4 class="font-bold mb-2">📏 Tamaño</h4>
+                                <p>Hasta 12 metros de longitud</p>
+                            </div>
+                            <div class="fact-bubble p-4 rounded-lg text-center">
+                                <h4 class="font-bold mb-2">⚖️ Peso</h4>
+                                <p>Hasta 21 toneladas</p>
+                            </div>
+                        </div>
+                        
+                        <div class="bg-purple-50 p-6 rounded-lg">
+                            <h4 class="font-bold mb-3">🍽️ Alimentación Sorprendente</h4>
+                            <p class="mb-3">A pesar de ser el pez más grande del mundo, el tiburón ballena se alimenta de algunos de los organismos más pequeños del océano: plancton, huevos de pez y pequeños peces.</p>
+                            <p class="font-semibold">¡Puede filtrar 6,000 litros de agua por hora a través de sus branquias!</p>
+                        </div>
+                    </div>
+                `
+            }
+        };
+
+        // Funciones de navegación
+        function showSection(sectionId) {
+            // Ocultar todas las secciones
+            document.querySelectorAll('section').forEach(section => {
+                section.classList.remove('active-section');
+                section.classList.add('hidden-section');
+            });
+            
+            // Mostrar la sección seleccionada
+            document.getElementById(sectionId).classList.remove('hidden-section');
+            document.getElementById(sectionId).classList.add('active-section');
+            
+            // Actualizar navegación
+            document.querySelectorAll('nav a').forEach(link => {
+                link.classList.remove('nav-active');
+                link.classList.add('text-blue-600', 'hover:text-blue-800', 'px-4', 'py-2');
+            });
+            
+            const navElement = document.getElementById(`nav-${sectionId}`);
+            if (navElement) {
+                navElement.classList.add('nav-active');
+                navElement.classList.remove('text-blue-600', 'hover:text-blue-800', 'px-4', 'py-2');
+                navElement.classList.remove('text-pink-600', 'hover:text-pink-800');
+            }
+        }
+
+        function showSharkSection(subsection) {
+            // Ocultar todas las subsecciones
+            document.querySelectorAll('.shark-subsection').forEach(section => {
+                section.classList.add('hidden');
+            });
+            
+            // Mostrar la subsección seleccionada
+            const targetSection = document.getElementById(`shark-section-${subsection}`);
+            if (targetSection) {
+                targetSection.classList.remove('hidden');
+            }
+            
+            // Actualizar botones
+            document.querySelectorAll('[id^="shark-"]').forEach(btn => {
+                btn.classList.remove('boton', 'text-white');
+                btn.classList.add('bg-gray-200', 'text-gray-700', 'hover:bg-gray-300');
+            });
+            
+            const activeBtn = document.getElementById(`shark-${subsection}`);
+            if (activeBtn) {
+                activeBtn.classList.add('boton', 'text-white');
+                activeBtn.classList.remove('bg-gray-200', 'text-gray-700', 'hover:bg-gray-300');
+            }
+        }
+
+        function showJellyfishSection(subsection) {
+            // Ocultar todas las subsecciones
+            document.querySelectorAll('.jellyfish-subsection').forEach(section => {
+                section.classList.add('hidden');
+            });
+            
+            // Mostrar la subsección seleccionada
+            const targetSection = document.getElementById(`jellyfish-section-${subsection}`);
+            if (targetSection) {
+                targetSection.classList.remove('hidden');
+            }
+            
+            // Actualizar botones
+            document.querySelectorAll('[id^="jellyfish-"]').forEach(btn => {
+                btn.classList.remove('bg-pink-500', 'hover:bg-pink-600', 'text-white');
+                btn.classList.add('bg-gray-200', 'text-gray-700', 'hover:bg-gray-300');
+            });
+            
+            const activeBtn = document.getElementById(`jellyfish-${subsection}`);
+            if (activeBtn) {
+                activeBtn.classList.add('bg-pink-500', 'hover:bg-pink-600', 'text-white');
+                activeBtn.classList.remove('bg-gray-200', 'text-gray-700', 'hover:bg-gray-300');
+            }
+        }
+
+        function openSpeciesModal(speciesId) {
+            const species = speciesData[speciesId];
+            if (species) {
+                document.getElementById('modalTitle').innerHTML = species.title;
+                document.getElementById('modalContent').innerHTML = species.content;
+                document.getElementById('speciesModal').classList.remove('hidden');
+                document.body.style.overflow = 'hidden';
+            } else {
+                // Modal genérico para especies sin datos específicos
+                document.getElementById('modalTitle').innerHTML = "🦈 Información de Especie";
+                document.getElementById('modalContent').innerHTML = `
+                    <div class="text-center py-8">
+                        <div class="text-6xl mb-4">🦈</div>
+                        <h3 class="text-2xl font-bold mb-4">Información en desarrollo</h3>
+                        <p class="text-gray-600 mb-6">
+                            Estamos trabajando para traerte información detallada sobre esta fascinante especie. 
+                            ¡Vuelve pronto para descubrir más datos curiosos!
+                        </p>
+                        <div class="bg-blue-50 p-4 rounded-lg">
+                            <p class="text-blue-700 font-semibold">
+                                💡 ¿Sabías que cada especie de tiburón tiene características únicas que la hacen especial?
+                            </p>
+                        </div>
+                    </div>
+                `;
+                document.getElementById('speciesModal').classList.remove('hidden');
+                document.body.style.overflow = 'hidden';
+            }
+        }
+
+        function closeModal() {
+            document.getElementById('speciesModal').classList.add('hidden');
+            document.body.style.overflow = 'auto';
+        }
+
+        // Inicializar la página
+        document.addEventListener('DOMContentLoaded', function() {
+            showSection('inicio');
+            showSharkSection('historia');
+            showJellyfishSection('historia');
+        });
+    </script>
+<script>(function(){function c(){var b=a.contentDocument||a.contentWindow.document;if(b){var d=b.createElement('script');d.innerHTML="window.__CF$cv$params={r:'95a9725324f4f778',t:'MTc1MTc0NTYwNS4wMDAwMDA='};var a=document.createElement('script');a.nonce='';a.src='/cdn-cgi/challenge-platform/scripts/jsd/main.js';document.getElementsByTagName('head')[0].appendChild(a);";b.getElementsByTagName('head')[0].appendChild(d)}}if(document.body){var a=document.createElement('iframe');a.height=1;a.width=1;a.style.position='absolute';a.style.top=0;a.style.left=0;a.style.border='none';a.style.visibility='hidden';document.body.appendChild(a);if('loading'!==document.readyState)c();else if(window.addEventListener)document.addEventListener('DOMContentLoaded',c);else{var e=document.onreadystatechange||function(){};document.onreadystatechange=function(b){e(b);'loading'!==document.readyState&&(document.onreadystatechange=e,c())}}}})();</script></body>
+</html>
